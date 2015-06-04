@@ -1,7 +1,7 @@
 {
     "builders": [
         {
-            "vm_name": "centos-7.0-x86_64",
+            "vm_name": "centos-7.0-64",
             "type": "virtualbox-iso",
             "guest_os_type": "RedHat_64",
             "iso_url": "http://mirrors.ukfast.co.uk/sites/ftp.centos.org/7/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso",
@@ -36,7 +36,7 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "output": "centos-7.0-x86_64.box"
+            "output": "centos-7.0-64.box"
         }
     ]
 }
