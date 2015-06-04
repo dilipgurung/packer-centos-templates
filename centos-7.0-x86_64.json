@@ -1,0 +1,42 @@
+{
+    "builders": [
+        {
+            "vm_name": "centos-7.0-x86_64",
+            "type": "virtualbox-iso",
+            "guest_os_type": "RedHat_64",
+            "iso_url": "http://mirrors.ukfast.co.uk/sites/ftp.centos.org/7/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso",
+            "iso_checksum": "7cf1ac8da13f54d6be41e3ccf228dc5bb35792f515642755ff4780d5714d4278",
+            "iso_checksum_type": "sha256",
+            "ssh_password": "vagrant",
+            "ssh_username": "vagrant",
+            "ssh_wait_timeout": "30m",
+            "vboxmanage": [
+                ["modifyvm", "{{.Name}}", "--memory", "1024"]
+            ],
+            "http_directory": ".",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+            ]
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/virtualbox.sh",
+                "scripts/vagrant.sh",
+                "scripts/cleanup.sh"
+            ],
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'"
+        }
+    ],
+
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "output": "centos-7.0-x86_64.box"
+        }
+    ]
+}
