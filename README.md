@@ -8,6 +8,7 @@ Packer templates for building vagrant CentOS boxes.
 
 Follow the installation steps from http://www.packer.io/docs/installation.html
 
-### Build Box
-####CentOS 7.1
+### Building Boxes
+
+##### CentOS 7.1
     packer build centos-7.1.json
